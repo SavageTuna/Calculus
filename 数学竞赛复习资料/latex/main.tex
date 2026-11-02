@@ -1,0 +1,107 @@
+% !TeX program = xelatex
+\documentclass[UTF8,11pt,oneside,openany,fontset=windows]{ctexbook}
+\usepackage[a4paper,top=22mm,bottom=22mm,left=22mm,right=20mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm,booktabs,longtable,array,enumitem,needspace}
+\usepackage{xcolor,fancyhdr,hyperref}
+\definecolor{ink}{HTML}{163B60}
+\definecolor{accent}{HTML}{226A88}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=accent,bookmarksnumbered=true,pdftitle={全国大学生数学竞赛：微积分公式定理与真题详解},pdfauthor={学习资料整理}}
+\ctexset{chapter={format=\huge\bfseries\color{ink},beforeskip=14pt,afterskip=24pt},section={format=\Large\bfseries\color{ink}},subsection={format=\large\bfseries}}
+\setlength{\parskip}{4pt}
+\linespread{1.17}
+\setlist{nosep,leftmargin=2em,topsep=4pt}
+\setcounter{tocdepth}{2}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small 全国大学生数学竞赛 · 非数学类初赛}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\newcommand{\src}[1]{\hyperref[src:#1]{[S#1]}}
+\newcommand{\srcentry}[1]{\phantomsection\label{src:#1}[S#1]}
+\newcounter{problem}
+\newcommand{\problem}[3]{\par\bigskip\Needspace{4\baselineskip}\refstepcounter{problem}\subsection*{真题 #1\quad #2}\addcontentsline{toc}{subsection}{真题 #1 #2}\label{q:#1}\noindent{\small\color{accent}来源：#3}\par}
+\newcommand{\method}[1]{\par\noindent\textbf{选法：}#1\par}
+\newcommand{\sol}{\par\noindent\textbf{详解：}}
+\newcommand{\trap}[1]{\par\noindent\textbf{易错与迁移：}#1\par}
+\newcommand{\ans}[1]{\boxed{#1}}
+\newcommand{\ruleitem}[2]{\par\noindent\textbf{#1}\quad #2\par}
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{20mm}
+{\color{accent}\Large 公式要记得住，题目要做得出\par}
+\vspace{10mm}
+{\Huge\bfseries\color{ink}全国大学生数学竞赛\par}
+\vspace{5mm}
+{\huge\bfseries 微积分公式、定理\par 与历年真题详解\par}
+\vspace{12mm}
+{\Large 非数学类 A/B 初赛复习用\par}
+\vspace{9mm}
+\hrule\vspace{6mm}
+\begin{tabular}{@{}rl@{}}
+教材主线 & 上海交通大学数学科学学院微积分课程组编\\[3pt]
+实际附件 & 《大学数学·微积分》上册第三版、下册第二版\\[3pt]
+内容组织 & 公式与条件 → 识别方法 → 真题 → 独立推导\\[3pt]
+题目规模 & 84 道（组）已核对来源的历年题，含 A/B 共题及补赛题\\[3pt]
+真题年代 & 选自 2009—2025 年间；各题注明届次、类别与题号\\[3pt]
+整理日期 & 2026 年 10 月 31 日
+\end{tabular}
+\vfill
+{\small 本资料按竞赛考点重新组织，不是教材逐页摘录，也不是竞赛主办方出版物。题干作简明转述，解答独立编写；完整原卷入口见附录。A/B 卷重复题只计一次，多问同一题按一组计。}
+\end{titlepage}
+\frontmatter
+\chapter*{使用说明}
+\addcontentsline{toc}{chapter}{使用说明}
+这份资料围绕你提供的两册教材，覆盖非数学类初赛常用的微积分、向量与空间几何、常微分方程。先读每个公式的\textbf{适用条件}，再遮住解答做对应真题。看懂答案后，要能复述“为什么选择这个方法”和“哪一步用到了条件”。
+
+附件核对结果：文件名为“26高数”的 PDF 实际为\textbf{上册第三版}，另一附件为\textbf{下册第二版}。下表采用书内印刷页码，不能直接当作 PDF 页码。不同版本章节细节会有差别，故按主题对照。上册正文第 1 页对应附件 PDF 第 13 页；下册对应 PDF 第 7 页。
+
+\begin{longtable}{p{.23\textwidth}p{.34\textwidth}p{.33\textwidth}}
+\toprule 本资料 & 教材对应 & 复习重点\\\midrule\endhead
+第 1 章 & 上册第 1、2 章，1—100 页 & 极限、连续、等价量、数列递推\\
+第 2、3 章 & 上册第 3、4 章，101—220 页 & 求导、泰勒、中值定理、证明\\
+第 4 章 & 上册第 5 章，221—316 页 & 积分、反常积分、几何应用\\
+第 5 章 & 上册第 6 章，317 页起 & 一阶方程、二阶常系数方程\\
+第 6 章 & 下册第 7 章，1—54 页 & 向量、直线、平面、二次曲面\\
+第 7 章 & 下册第 8 章，55—119 页 & 偏导、隐函数、极值、方向导数\\
+第 8 章 & 下册第 9 章，120—178 页 & 重积分、换元、对称性\\
+第 9 章 & 下册第 10 章，179—237 页 & 线面积分、格林、高斯、斯托克斯\\
+第 10 章 & 下册第 11 章，238 页起 & 数项、幂级数、傅里叶级数\\\bottomrule
+\end{longtable}
+
+\textbf{三层使用法。}第一遍建立公式框架，先做计算型填空题；第二遍完整书写计算大题和证明题；第三遍回到真题目录，以 150 分钟为一个训练单元混合抽题。150 分钟、100 分见所核对的 2025 年原卷；你参赛当年的具体安排仍以当年通知为准。
+
+\textbf{A/B 使用范围。}两类均可用本资料复习基础与综合题。文中不把某一届的试题差别直接当作永久考纲；较难的存在性证明、傅里叶唯一性、积分与级数交换等标为提高内容。若学校发布了当年大纲，以该大纲确定取舍。
+
+\textbf{符号。}所有角度用弧度；$C^k$ 表示到 $k$ 阶导数连续；$\ln$ 为自然对数；$\arctan$ 取主值；$\dd s,\dd S$ 为弧长、面积元，均无方向；$\dd x,\dd y,\dd z$ 与有向线面积分的符号须随定向处理。数列下标和积分变量仅在各题内部使用。
+
+\textbf{核对原则。}真题来源编号如 \src{17A} 指向附录。早期校方资料库及近年转载卷中，个别参考答案存在符号或排版错误，本资料以原题条件重新推导。没有把自行编造的例子标成真题；个别用于说明定理的短例会明确写“示范”或“反例”。
+\tableofcontents
+\mainmatter
+\input{ch01}
+\input{ch02}
+\input{ch03}
+\input{ch04}
+\input{ch05}
+\input{ch06}
+\input{ch07}
+\input{ch08}
+\input{ch09}
+\input{ch10}
+\input{ch10problems}
+\appendix
+\input{appendix}
+\input{sources}
+\end{document}

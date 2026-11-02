@@ -1,0 +1,40 @@
+\chapter{数项级数、幂级数与傅里叶级数}
+\section{数项级数敛散判别}
+级数 $\sum a_n$ 收敛的必要条件是 $a_n\to0$，但非充分。柯西准则要求任意长的尾部部分和趋于 0。经典级数：
+\[
+\sum_{n=0}^\infty q^n=\frac1{1-q}\ (|q|<1),\quad
+\sum_{n=1}^\infty\frac1{n^p}\text{ 收敛}\iff p>1,\quad
+\sum_{n=1}^\infty\frac1{n(\ln n)^p}\text{ 收敛}\iff p>1.
+\]
+调和级数发散。加有限项不改变敛散性。
+\ruleitem{正项比较}{最终 $0\le a_n\le b_n$ 且 $\sum b_n$ 收敛，则 $\sum a_n$ 收敛；若 $a_n\ge b_n\ge0$ 且 $\sum b_n$ 发散，则 $\sum a_n$ 发散。若 $a_n/b_n\to c\in(0,\infty)$，则同敛散。}
+\ruleitem{比值、根值}{$L=\lim|a_{n+1}/a_n|$ 或 $L=\limsup\sqrt[n]{|a_n|}$：$L<1$ 绝对收敛，$L>1$ 发散；$L=1$ 无结论。阶乘与指数常先用比值。}
+\ruleitem{交错与误差}{若 $a_n\downarrow0$，则 $\sum(-1)^{n-1}a_n$ 收敛，截断误差 $|R_N|\le a_{N+1}$。单调条件与趋零缺一不可。绝对收敛必收敛；条件收敛重排可能改变和（提高）。}
+\ruleitem{Dirichlet}{若 $A_N=\sum_{n=1}^N a_n$ 有界，$b_n$ 单调趋 0，则 $\sum a_nb_n$ 收敛。Abel：若 $\sum a_n$ 收敛、$b_n$ 单调有界，则 $\sum a_nb_n$ 收敛。先确认“部分和有界”或“单调”对应哪一列。}
+\ruleitem{变换级数}{双重求和、积分与级数换序，须有非负项（Tonelli）或绝对/一致收敛等合法条件。条件收敛时不能任意交换次序。}
+
+\section{幂级数与常用展开}
+幂级数 $\sum c_n(x-a)^n$ 的收敛半径
+\[
+R=\frac1{\limsup_{n\to\infty}\sqrt[n]{|c_n|}},
+\]
+约定 $1/0=\infty,1/\infty=0$。若系数比值极限可用 $R=\lim|c_n/c_{n+1}|$。在 $|x-a|<R$ 内逐项求导、积分；边界 $|x-a|=R$ 逐点另判。
+\begin{align*}
+\frac1{1-x}&=\sum_{n=0}^\infty x^n &&(|x|<1),\\
+\ln(1+x)&=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n} &&(-1<x\le1),\\
+\arctan x&=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1} &&(|x|\le1),\\
+\ee^x&=\sum_{n=0}^\infty\frac{x^n}{n!},\quad
+\sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!},\\
+\cos x&=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!} &&(x\in\R),\\
+(1+x)^\alpha&=\sum_{n=0}^\infty\binom\alpha n x^n &&(|x|<1).
+\end{align*}
+其中 $\binom\alpha n=\alpha(\alpha-1)\cdots(\alpha-n+1)/n!$。边界以必要条件 $c_n(x-a)^n\to0$ 起步，必要条件失败即发散；通过后仍需判别。
+
+\section{傅里叶级数（提高）}
+周期 $2L$ 可积函数在适当分段光滑条件下的傅里叶系数为
+\[
+a_0=\frac1L\int_{-L}^{L}f(x)\dd x,\quad
+a_n=\frac1L\int_{-L}^{L}f(x)\cos\frac{n\pi x}L\dd x,\quad
+b_n=\frac1L\int_{-L}^{L}f(x)\sin\frac{n\pi x}L\dd x.
+\]
+级数为 $a_0/2+\sum_{n\ge1}(a_n\cos(n\pi x/L)+b_n\sin(n\pi x/L))$。在连续点收敛到 $f(x)$，在跳跃点收敛到左右极限平均。分段 $C^1$ 是常见充分条件。连续周期函数由其全部傅里叶系数唯一确定（可用 Fejér 定理）。

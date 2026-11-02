@@ -1,0 +1,72 @@
+\chapter{考场方法速查与复习安排}
+\section{题型信号 → 优先方法}
+\begin{longtable}{p{.29\textwidth}p{.59\textwidth}}
+\toprule 题面信号 & 先试的动作与检查点\\\midrule\endhead
+$n\to\infty$，多项乘积 & 望远镜、取对数、等价首项、单调有界；对数取值前检查正性\\
+$1^\infty$、$(1+u_n)^{v_n}$ & 取 $v_n\ln(1+u_n)$，确认乘积极限\\
+差分 $g(n+1)-g(n)$ & 中值定理或 Stolz；Stolz 要核实分母单调趋无穷\\
+正弦在等距点求和 & 识别黎曼和，先确认归一化步长\\
+分子中连续多项相减 & 泰勒展开到抵消后的首个非零项；每个等价量要对应同一趋近变量\\
+零点存在或根数 & 介值定存在，严格单调定唯一，Rolle 反复使用定上界\\
+两点函数值差 & Lagrange；两个区间内各有导数点常先造一个中间分点\\
+$f'+pf$ 与所求等于零 & 乘 $\ee^{\int p}$ 构造导数\\
+积分式等于函数 & 先设积分为常数，或求导消去积分，再回代定常数\\
+反常积分的振荡因子 & Dirichlet / Abel；绝对收敛单独判，瑕点分段\\
+$x^2+y^2$、圆盘、径向函数 & 极坐标；面积元别漏 $r$\\
+球/锥/球壳、$x^2+y^2+z^2$ & 球坐标；明确极角是从轴还是从平面量起\\
+椭球二次式 & 配方、平移、缩放成球；列出 Jacobian\\
+曲线 $P\dd x+Q\dd y$ 闭合 & Green 前查内部无奇点及方向\\
+闭曲面通量 & Gauss 前查闭合、外法向、场在区域内光滑\\
+边界曲线环流与旋度 & Stokes 检查右手定向；可换为容易计算的跨曲面\\
+高阶复合偏导 & 先命名内层变量，列一阶链式式子，再逐项求导\\
+隐函数偏导 & 先由原式找所求点的函数值，再对指定变量求导并代点\\
+约束最值且约束简单 & 优先消元；Lagrange 提供候选，最后检查边界与奇点\\
+$n!$ 或 $a^n$ 系数 & 比值法求收敛半径，幂级数封闭和先尝试系数拆分\\
+数列项定义成积分 & 积分估计单调与趋零；换序须非负或绝对收敛\\
+\bottomrule
+\end{longtable}
+
+\section{考场十条检查}
+\begin{enumerate}
+\item 极限题先写趋近方向，$x\to0^+$ 与双侧不能混。
+\item 泰勒展开必须写清阶数，若首项抵消就继续展开。
+\item 中值定理逐条核对闭区间连续、开区间可导、端点关系。
+\item 罗必达只针对适用的不定式；每次使用后重新核验。
+\item 不定积分不要漏绝对值、定义区间与 $C$；定积分换元同步换限。
+\item 反常积分在每个瑕点分别取极限，禁止把发散项相减。
+\item 方向导数用单位向量；切线、曲面面积、坐标变换的系数分别核对。
+\item 场积分先判断第一类/第二类、是否有向、曲线或曲面方向。
+\item 幂级数端点与内部半径分开判，收敛域通常写区间端点。
+\item 计算完代回原题；极值候选检查约束，隐函数候选检查非零条件。
+\end{enumerate}
+
+\section{四周复习路线}
+\begin{longtable}{p{.15\textwidth}p{.37\textwidth}p{.39\textwidth}}
+\toprule 周次 & 学习内容 & 每周产出\\\midrule\endhead
+第 1 周 & 极限、连续、导数、泰勒 & 整理一张展开表；完成真题 01—21；能解释每个极限展开到几阶\\
+第 2 周 & 中值定理、积分、反常积分、ODE & 完成 22—47；独立写出两个证明构造、三种积分判敛证明\\
+第 3 周 & 空间几何、多元微分、重积分 & 完成 48—67；练习隐函数偏导和坐标区域草图\\
+第 4 周 & 线面积分、级数、混合套题 & 完成 68—84；至少两次限时模拟，按错因补漏\\
+\bottomrule
+\end{longtable}
+时间更短时，按章节序号分为基础计算、综合计算、证明与提高三层；先保证每种题型至少完成一道，再集中补弱项。复盘需记“错误原因—正确触发信号—下次检查项”，不要只誊答案。
+
+\section{一页式公式回看}
+\[
+\begin{array}{ll}
+\text{等价首项：}&\sin x\sim x,\ \ln(1+x)\sim x,\ \ee^x-1\sim x,\ 1-\cos x\sim x^2/2.\\
+\text{中值：}&f(b)-f(a)=f'(\xi)(b-a).\\
+\text{Taylor：}&f(a+h)=\sum_{k=0}^n f^{(k)}(a)h^k/k!+o(h^n).\\
+\text{积分分部：}&\int u\dd v=uv-\int v\dd u.\\
+\text{线性 ODE：}&y'+Py=Q,\quad y=\ee^{-\int P}(\int Q\ee^{\int P}+C).\\
+\text{方向导数：}&D_{\bm e}f=\grad f\cdot\bm e,\quad|\bm e|=1.\\
+\text{二元曲面面积：}&\dd S=\sqrt{1+z_x^2+z_y^2}\dd x\dd y.\\
+\text{极坐标：}&\dd A=r\dd r\dd\theta.\\
+\text{球坐标：}&\dd V=\rho^2\sin\phi\dd\rho\dd\phi\dd\theta.\\
+\text{Green：}&\oint(P\dd x+Q\dd y)=\iint(Q_x-P_y)\dd A.\\
+\text{Gauss：}&\iint_{\partial\Omega}\bm F\cdot\bm n\dd S=\iiint_\Omega\div\bm F\dd V.\\
+\text{Stokes：}&\oint_{\partial S}\bm F\cdot\dd\bm r=\iint_S\curl\bm F\cdot\bm n\dd S.\\
+\text{幂级数：}&R^{-1}=\limsup|c_n|^{1/n};\quad\text{端点各自判定。}
+\end{array}
+\]
+此表供考前回看，完整条件仍以各章定理说明为准。

@@ -5,3 +5,10 @@ tmp/
 
 # Microsoft Office lock files
 ~$*
+
+# Math competition notes: LaTeX build files
+/数学竞赛复习资料/latex/*.aux
+/数学竞赛复习资料/latex/*.log
+/数学竞赛复习资料/latex/*.out
+/数学竞赛复习资料/latex/*.toc
+/数学竞赛复习资料/latex/compile*.txt

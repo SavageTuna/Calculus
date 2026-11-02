@@ -1,0 +1,122 @@
+\chapter{极限、连续与渐近分析}
+\section{函数与极限的基本工具}
+\ruleitem{基础整理}{复合前检查定义域：$\ln u$ 要求 $u>0$，偶次根号要求被开方数非负，分母非零；反函数的定义域是原函数的值域。奇偶函数的定义域须关于原点对称。奇函数在对称区间可积时积分为零，偶函数积分为半区间的两倍。}
+\[
+\sin 2x=2\sin x\cos x,\quad 1-\cos x=2\sin^2(x/2),\quad
+\sin^2x=\frac{1-\cos2x}{2},\quad \cos^2x=\frac{1+\cos2x}{2}.
+\]
+\[
+\sinh x=\frac{\ee^x-\ee^{-x}}2,\quad\cosh x=\frac{\ee^x+\ee^{-x}}2,\quad
+\cosh^2x-\sinh^2x=1.
+\]
+\ruleitem{极限定义}{数列 $a_n\to A$：$\forall\varepsilon>0$，$\exists N$，$n>N$ 时 $|a_n-A|<\varepsilon$。函数 $f(x)\to A (x\to x_0)$：将“$n>N$”换成“$0<|x-x_0|<\delta$”。极限只管去心邻域，通常不决定 $f(x_0)$。}
+\ruleitem{等价刻画}{海涅定理：$f(x)\to A$ 当且仅当对每个趋于 $x_0$、且不等于 $x_0$ 的定义域内数列 $x_n$，均有 $f(x_n)\to A$。找两条数列得到不同极限，可以否定极限存在。柯西准则：实数列收敛当且仅当其尾部项彼此任意接近。}
+\ruleitem{运算与保号}{有限极限可作四则运算；商的分母极限须非零。极限为正的量最终为正。无穷大不是实数，$0\cdot\infty$、$\infty-\infty$ 等必须先改写。}
+\ruleitem{夹逼与单调有界}{若 $a_n\le b_n\le c_n$ 且外侧同趋于 $L$，则 $b_n\to L$。实数单调有界数列必收敛；递推题先证明“有界、单调”，再把极限代入连续递推式。}
+\ruleitem{Stolz 定理（常用型）}{若 $b_n$ 严格递增且趋于 $+\infty$，$\frac{a_{n+1}-a_n}{b_{n+1}-b_n}\to L$，则 $a_n/b_n\to L$，允许 $L$ 为扩展实数。不可省略分母条件。}
+\ruleitem{黎曼和}{若 $f$ 在 $[a,b]$ 黎曼可积，均匀分割有
+$\displaystyle \frac{b-a}{n}\sum_{k=1}^n f\!\left(a+\frac{k(b-a)}n\right)\to\int_a^b f(x)\dd x$。识别“$1/n$、$k/n$、求和上限 $n$”。}
+
+\section{等价无穷小与泰勒阶数}
+记 $f=o(g)$ 表示 $f/g\to0$，$f=O(g)$ 表示比值在所考察邻域有界，$f\sim g$ 表示比值趋于 1（分母在去心邻域非零）。当 $x\to0$：
+\[
+\sin x\sim\tan x\sim\arcsin x\sim\arctan x\sim x,\quad
+\ln(1+x)\sim\ee^x-1\sim x,
+\]
+\[
+1-\cos x\sim\frac{x^2}2,\quad (1+x)^\alpha-1\sim\alpha x (\alpha\ne0),\quad
+ a^x-1\sim x\ln a (a>0,a\ne1).
+\]
+加减式必须先检查抵消。$\sin x\sim x$ 并不允许把 $\sin x-x$ 直接当作零。需要时展开到第一个非零项：
+\begin{align*}
+\ee^x&=1+x+\frac{x^2}2+\frac{x^3}6+\frac{x^4}{24}+o(x^4),\\
+\ln(1+x)&=x-\frac{x^2}2+\frac{x^3}3-\frac{x^4}4+o(x^4),\\
+\sin x&=x-\frac{x^3}6+\frac{x^5}{120}+o(x^5),\\
+\cos x&=1-\frac{x^2}2+\frac{x^4}{24}-\frac{x^6}{720}+o(x^6),\\
+\tan x&=x+\frac{x^3}3+\frac{2x^5}{15}+o(x^5),\\
+\arctan x&=x-\frac{x^3}3+\frac{x^5}5+o(x^5),\\
+(1+x)^\alpha&=1+\alpha x+\frac{\alpha(\alpha-1)}2x^2+\frac{\alpha(\alpha-1)(\alpha-2)}6x^3+o(x^3).
+\end{align*}
+\ruleitem{幂指极限}{底数最终为正时 $u(x)^{v(x)}=\exp(v(x)\ln u(x))$。若 $h\to0$、$vh\to L$，则 $(1+h)^v\to\ee^L$。这里的 $1^\infty$ 只是型态，不是答案。}
+\ruleitem{增长阶}{当 $x\to+\infty$，固定 $a,b>0$，$\ln x=o(x^a)$，$x^a=o(\ee^{bx})$。含 $n!$ 可先取对数、夹逼或用递推比值，不必一律使用斯特林公式。}
+\ruleitem{积分上限小量}{若 $f(t)\sim c t^m$、$m>-1$，且 $u\to0^+$，则 $\int_0^u f(t)\dd t\sim c u^{m+1}/(m+1)$（$c\ne0$）。可以由比较估计证明，不是将积分号随意“移出极限”。}
+
+\section{连续性与闭区间定理}
+连续：$\lim_{x\to a}f(x)=f(a)$，须同时检查定义、极限、相等。第一类间断点左右极限都有限；左右不等是跳跃，相等但与函数值不符或未定义是可去；其余为第二类。
+
+闭区间连续函数有界、取得最大最小值，且一致连续；介值定理保证取遍两端函数值之间的数。零点存在常用 $f(a)f(b)<0$。仅有开区间连续不够，如 $1/x$ 在 $(0,1)$ 无界。复合函数的极限定理在外层连续时可直接使用。
+
+\section{数列、幂指与黎曼和真题}
+\problem{01}{连乘递推的望远镜化}{2010 年第 2 届，非数学类，一(1)，\src{02}}
+设 $|a|<1$，求 $P_n=\prod_{k=0}^n(1+a^{2^k})$ 的极限。
+\method{看到指数 $1,2,4,8,\ldots$，使用平方差连续相消。}
+\sol $a=0$ 时结论直接成立。一般地，
+\[(1-a)P_n=(1-a)(1+a)(1+a^2)\cdots(1+a^{2^n})=1-a^{2^{n+1}}.\]
+由于 $a^{2^{n+1}}\to0$，故 $\ans{\lim P_n=1/(1-a)}$。迁移：形如 $1+x^{2^k}$ 的积先补上 $1-x$，比取对数求和更直接。
+
+\problem{02}{三角连乘}{2011 年第 3 届，非数学类，一(2)，\src{03}}
+求 $\lim_{n\to\infty}\prod_{k=1}^n\cos(\theta/2^k)$。
+\sol 多次使用倍角公式，
+\[2^n\sin(\theta/2^n)\prod_{k=1}^n\cos(\theta/2^k)=\sin\theta.\]
+固定 $\theta\ne0$ 时，充分大的 $n$ 使分母非零，且 $2^n\sin(\theta/2^n)\to\theta$。答案为 $\ans{\sin\theta/\theta}$；$\theta=0$ 时各因子均为 1，极限为 1。
+
+\problem{03}{阶乘的弱指数}{2012 年第 4 届，非数学类，一(1)，\src{04}}
+求 $\lim_{n\to\infty}(n!)^{1/n^2}$。
+\sol 取对数，$0\le \ln(n!)/n^2\le n\ln n/n^2=\ln n/n\to0$。再取指数得 $\ans{1}$。不要只因 $n!$ 增长快就把原式判断为无穷大；外部指数同样关键。
+
+\problem{04}{带整数周期的幂指极限}{2013 年第 5 届，非数学类，一(1)，\src{05}}
+求 $\lim_{n\to\infty}[1+\sin(\pi\sqrt{4n^2+1})]^n$。
+\sol 去掉整数周期，令
+\[\delta_n=\pi(\sqrt{4n^2+1}-2n)=\frac\pi{\sqrt{4n^2+1}+2n},\quad n\delta_n\to\frac\pi4.\]
+于是 $n\ln(1+\sin\delta_n)\sim n\delta_n\to\pi/4$，底数最终为正，答案 $\ans{\ee^{\pi/4}}$。
+
+\problem{05}{先夹逼，再识别黎曼和}{2015 年第 7 届，非数学类，一(1)，\src{07}}
+求 $\displaystyle\lim_{n\to\infty}n\sum_{k=1}^n\frac{\sin(k\pi/n)}{n^2+k}$。
+\sol 因正弦非负，
+\[\frac1{n+1}\sum_{k=1}^n\sin\frac{k\pi}n
+\le n\sum_{k=1}^n\frac{\sin(k\pi/n)}{n^2+k}
+\le\frac1n\sum_{k=1}^n\sin\frac{k\pi}n.\]
+右端趋于 $\int_0^1\sin(\pi t)\dd t=2/\pi$，左端多一个趋于 1 的因子 $n/(n+1)$，故答案 $\ans{2/\pi}$。注意原题分母是 $n^2+k$，没有根号。
+
+\problem{06}{导数定义进入指数}{2016 年第 8 届，非数学类，一(1)，\src{08}}
+$f$ 在 $a$ 可导，$f(a)\ne0$。求 $\lim[f(a+1/n)/f(a)]^n$。
+\sol 由可导性，$f(a+1/n)/f(a)=1+f'(a)/(nf(a))+o(1/n)$，故答案
+$\ans{\exp(f'(a)/f(a))}$。即使 $f(a)<0$，此比值也最终趋近正数 1，实数幂表达仍可用取对数法。
+
+\problem{07}{先抽出导数定义}{2016 年第 8 届，非数学类，一(2)，\src{08}}
+已知 $f(1)=0$、$f'(1)$ 存在，求
+\[\lim_{x\to0}\frac{f(\sin^2x+\cos x)\tan3x}{(\ee^{x^2}-1)\sin x}.\]
+\sol $u=\sin^2x+\cos x-1=\tfrac12x^2+o(x^2)$，可导性给出 $f(1+u)=f'(1)u+o(u)$，其余因子分别为 $3x+o(x)$、$x^2+o(x^2)$、$x+o(x)$。所以极限为 $\ans{3f'(1)/2}$。此写法也涵盖 $f'(1)=0$，不应错误写成 $f(1+u)\sim f'(1)u$。
+
+\problem{08}{差分中的中值定理}{2018 年第 10 届，非数学类，一(1)，\src{10}}
+固定 $0<\alpha<1$，求 $\lim[(n+1)^\alpha-n^\alpha]$。
+\sol 由拉格朗日中值定理，差为 $\alpha\xi_n^{\alpha-1}$，其中 $n<\xi_n<n+1$，故答案为 $\ans0$。也可写成 $n^\alpha[(1+1/n)^\alpha-1]\sim\alpha n^{\alpha-1}$。
+
+\problem{09}{倒数与阶乘共同消去递推}{2020 年第 12 届，非数学类，二，\src{12}}
+$a_1=1$，$a_{n+1}=a_n/[(n+1)(a_n+1)]$。求 $\lim n!a_n$。
+\sol 归纳知 $a_n>0$。令 $b_n=1/(n!a_n)$，则
+\[b_{n+1}=\frac{a_n+1}{n!a_n}=b_n+\frac1{n!},\qquad b_1=1.\]
+所以 $b_n=\sum_{k=0}^{n-1}1/k!\to\ee$，从而 $\ans{n!a_n\to1/\ee}$。原递推含 $a_n+1$ 时，倒数常把非线性变成差分。
+
+\problem{10}{递推趋零时如何求速度}{第 13 届初赛补赛，非数学类，一(1)，\src{13}}
+$x_0=1$，$x_n=\ln(1+x_{n-1})$，求 $\lim nx_n$。
+\sol 对 $t>0$ 有 $0<\ln(1+t)<t$，故 $x_n$ 正、递减，极限满足 $L=\ln(1+L)$，只能为 0。由泰勒式，
+\[\frac1{x_{n+1}}-\frac1{x_n}=\frac{x_n-\ln(1+x_n)}{x_n\ln(1+x_n)}\to\frac12.\]
+取 $b_n=n$ 使用 Stolz，得 $(1/x_n)/n\to1/2$，故 $\ans{nx_n\to2}$。只有 $x_n\to0$ 还不足以给出这个速度。
+
+\section{近年卷：泰勒展开的抵消与组合}
+\problem{11}{无穷远的标准幂指型}{2023 年第 15 届，非数学 B 类，一(1)，\src{15B}}
+求 $\displaystyle\lim_{x\to+\infty}\left(\frac{x+3}{x+2}\right)^{2x-1}$。
+\sol 对数为 $(2x-1)\ln(1+1/(x+2))\to2$，故答案 $\ans{\ee^2}$。用 $1+u$ 形式比机械求导更清楚。
+
+\problem{12}{先抵消二阶项}{2025 年第 17 届，非数学 A 类，一(1)，\src{17A}}
+设 $f(x)=x-\ln(1+x)-\tfrac12x\sin x$，$g(x)=ax^3$，且 $\lim_{x\to0}f/g=1$，求 $a$。
+\sol 展开至三阶：$x-\ln(1+x)=x^2/2-x^3/3+o(x^3)$，$x\sin x/2=x^2/2+o(x^3)$，故 $f=-x^3/3+o(x^3)$。于是 $(-1/3)/a=1$，$\ans{a=-1/3}$。
+
+\problem{13}{变上限积分的阶数}{2025 年第 17 届，非数学 A 类，一(3)，\src{17A}}
+求 $\displaystyle\lim_{x\to0}\frac{\int_0^{\sin^2x}\ln(1+t)\dd t}{((1+x^3)^{1/3}-1)\sin x}$。
+\sol 上限 $u=\sin^2x\sim x^2$；因 $\ln(1+t)\sim t$，分子 $\sim u^2/2\sim x^4/2$。分母 $\sim(x^3/3)x=x^4/3$，得 $\ans{3/2}$。先在积分变量 $t$ 上展开，再代入上限，避免把 $t$ 与 $x$ 混为一谈。
+
+\problem{14}{复合展开与首项抵消}{2024 年第 16 届，非数学 B 类，一(1)，\src{16B}}
+求 $\displaystyle\lim_{x\to0}\frac{\ln(1+x^2)-x^2}{\sin^4x}$。
+\sol 令 $u=x^2$，$\ln(1+u)-u=-u^2/2+o(u^2)$，分子为 $-x^4/2+o(x^4)$，分母 $\sim x^4$，故答案 $\ans{-1/2}$。这是“先看抵消，再选展开阶数”的最小模板。

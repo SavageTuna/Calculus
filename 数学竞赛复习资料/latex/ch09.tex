@@ -1,0 +1,71 @@
+\chapter{曲线积分、曲面积分与三大公式}
+\section{有向积分、参数化与公式条件}
+\ruleitem{第一类曲线积分}{$\int_L f\dd s$ 不依赖走向。参数曲线 $\bm r(t)$ 的弧长元为 $|\bm r'(t)|\dd t$。}
+\[\int_L f\dd s=\int_\alpha^\beta f(\bm r(t))|\bm r'(t)|\dd t.\]
+分段光滑即可。
+\ruleitem{第二类曲线积分}{$\int_L P\dd x+Q\dd y+R\dd z$ 依赖方向。参数化后为
+$\int_\alpha^\beta(Px'+Qy'+Rz')\dd t$。反向取负；闭合曲线仍须说明正向。}
+\ruleitem{第一类曲面积分}{$\iint_S f\dd S$ 无定向，参数曲面 $\bm r(u,v)$ 的面积元为 $|\bm r_u\times\bm r_v|\dd u\dd v$。图像 $z=g(x,y)$：$\dd S=\sqrt{1+g_x^2+g_y^2}\dd x\dd y$。}
+\ruleitem{通量积分}{$\iint_S \bm F\cdot\bm n\dd S$ 依赖定向。参数化有向面积向量 $\bm r_u\times\bm r_v\dd u\dd v$；若取反向则积分变号。图像 $z=g$ 向上面积向量 $(-g_x,-g_y,1)\dd x\dd y$。}
+\ruleitem{Green 公式}{平面正向简单闭曲线（逆时针）$C=\partial D$，$P,Q\in C^1$ 于包含 $D$ 的邻域：
+\[
+\oint_C P\dd x+Q\dd y=\iint_D(Q_x-P_y)\dd A.
+\]
+有孔区域边界方向为外边界逆时针、内边界顺时针。若场在区域内有奇点，不能直接套用。}
+\ruleitem{保守场}{单连通域内 $Q_x=P_y$（三维 $\operatorname{curl}F=0$）推出存在势函数的常见充分条件；非单连通域只有必要而非充分。例 $(-y/(x^2+y^2),x/(x^2+y^2))$ 在去心平面旋度为零，但绕原点的闭路积分为 $2\pi$。}
+\ruleitem{Gauss 散度定理}{闭合、分段光滑边界 $S=\partial\Omega$ 取外法向，$\bm F\in C^1$ 在包含区域的开集：
+\[
+\iint_{\partial\Omega}\bm F\cdot\bm n\dd S=\iiint_\Omega\operatorname{div}\bm F\dd V.
+\]
+若向量场在体内有奇点则不适用；内部不能凭空穿过奇点。}
+\ruleitem{Stokes 公式}{定向曲面 $S$ 有边界 $C$，边界按右手法则与单位法向对应，向量场 $C^1$：
+\[
+\oint_C\bm F\cdot\dd\bm r=\iint_S(\operatorname{curl}\bm F)\cdot\bm n\dd S.
+\]
+取反定向两侧同时变号。$\operatorname{div}(\operatorname{curl}F)=0$，$\operatorname{curl}(\grad\phi)=0$。}
+
+\section{通量、环流与几何真题}
+\problem{68}{球面对线性组合积分}{2011 年第 3 届，非数学类，六，\src{03}}
+球面单位球 $S$ 上求 $\iint_S f(ax+by+cz)\dd S$（$f$ 连续）。
+\sol 旋转坐标，使 $(a,b,c)$ 转为 $z$ 轴。设 $A=\sqrt{a^2+b^2+c^2}$，单位球上 $z=t$ 的带状面积为 $2\pi\dd t$，所以
+\[\ans{\iint_S f(ax+by+cz)\dd S=2\pi\int_{-1}^1f(At)\dd t}.\]
+若 $A=0$，两边均为 $4\pi f(0)$。半径若非 1，面积带会多出 $R^2$ 因子。
+
+\problem{69}{用散度定理直接找最小通量区域}{2013 年第 5 届，非数学类，五，\src{05}}
+对闭合定向曲面（取外法向）与场 $\bm F=(x^3-x,2y^3-y,3z^3-z)$，求可能的最小通量。
+\sol 散度为 $3(x^2+2y^2+3z^2-1)$。记 $q=x^2+2y^2+3z^2$。为使体积分最小，包含所有散度为负的点且排除散度为正的点，候选区域为 $q\le1$。
+线性换元 $u=x,v=\sqrt2y,w=\sqrt3z$，Jacobian 为 $1/\sqrt6$。区域内被积函数为 $3(q-1)$，故
+\[
+\Phi_{\min}=\frac3{\sqrt6}\,4\pi\int_0^1(r^2-1)r^2\dd r
+=\ans{-\frac{4\sqrt6\pi}{15}}.
+\]
+边界椭球上的通量由 Gauss 定理取得。题设若限定某类区域或允许多个边界组件，通常的体积分极小原理仍成立，但应明确区域边界光滑并避开病态边界。
+\problem{70}{平面截椭圆柱的第一类面积分}{2023 年第 15 届，非数学 A 类，一(5)，\src{15A}}
+$L$ 为平面 $y+z=5$ 与圆柱 $x^2+y^2=25$ 所围平面片，求 $\iint_L(x+y+z)\dd S$。
+\sol 写成 $z=5-y$，$z_x=0,z_y=-1$，故 $\dd S=\sqrt2\dd x\dd y$，投影是半径 5 圆盘。被积函数化为 $x+5$；奇项 $x$ 积分为 0，故
+\[\ans{\sqrt2\cdot5\cdot25\pi=125\sqrt2\pi}.\]
+
+\problem{71}{绕奇点的环流不能用 Green}{2024 年第 16 届，非数学 A 类，四，\src{16A}}
+令 $L:x^2+y^2=9$ 逆时针，求
+$\oint_L[-y/(4x^2+y^2)\dd x+x/(4x^2+y^2)\dd y]$。
+\sol 参数化 $(x,y)=(3\cos t,3\sin t)$。代入得被积参数 $1/(4\cos^2t+\sin^2t)$，所以
+\[
+I=4\int_0^{\pi/2}\frac{\dd t}{4\cos^2t+\sin^2t}
+=4\int_0^\infty\frac{\dd u}{4+u^2}=\ans{\pi}.
+\]
+原点的分母为零，位于椭圆内部；区域不满足 Green 公式的光滑性条件。直接参数化既安全又简短。
+
+\problem{72}{上半球通量与补底面}{2024 年第 16 届，非数学 A 类，四，\src{16A}}
+上半球面 $S_R$ 取外法向，计算场 $\bm F=(x^2-x,y^2-y,z^2-z)$ 的通量。
+\sol 补上圆盘 $z=0$ 成闭曲面。底面向下法向为 $-\bm k$，而场的 $z$ 分量为 0，底面通量为 0。散度为 $2(x+y+z)-3$。半球中 $x,y$ 奇项积分为零，$\iiint z\dd V=\pi R^4/4$，体积 $2\pi R^3/3$。故
+\[
+\Phi=\frac{\pi R^4}2-2\pi R^3=\ans{\pi R^3(R-4)/2}.
+\]
+$R>0$ 任意。底面法向方向不影响本题答案，但封闭计算必须说清楚取向。
+\problem{73}{圆周上的二次多项式线积分}{2025 年第 17 届，非数学 A 类，一(5)，\src{17A}}
+曲线 $L$ 是球面 $x^2+y^2+z^2=4$ 与平面 $x+y+z=3$ 的交线，求 $\int_L(x^2+2xy)\dd s$。
+\sol 圆心为平面法向投影 $(1,1,1)$，即 $(1,1,1)$；半径 $\sqrt{4-3}=1$，所以周长 $2\pi$。写 $\bm r=(1,1,1)+\cos t\,\bm e_1+\sin t\,\bm e_2$，取
+$\bm e_1=(1,-1,0)/\sqrt2$、$\bm e_2=(1,1,-2)/\sqrt6$。
+一周期平均有 $\overline{x^2}=1+\frac12(1/2+1/6)=4/3$，$\overline{xy}=1+\frac12(-1/2+1/6)=5/6$。因此
+\[\ans{\int_L(x^2+2xy)\dd s=2\pi(4/3+5/3)=6\pi}.\]
+$\dd s=\dd t$（半径为 1）。“球面与平面的交线”先求圆心、半径，再用圆周平均值处理二次式。

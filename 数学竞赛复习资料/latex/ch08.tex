@@ -1,0 +1,72 @@
+\chapter{重积分与变量替换}
+\section{二重、三重积分规则}
+\ruleitem{积分意义}{连续函数在闭有界区域可积，且 Fubini 定理允许按合适的先后次序累次积分。区域边界对内部变量常要分段；非矩形上不能遗漏上下限的依赖。}
+\ruleitem{换元 Jacobian}{若 $T:(u,v)\mapsto(x,y)$ 可逆且光滑，则
+\[
+\iint_D f(x,y)\dd x\dd y
+=\iint_{D'} f(x(u,v),y(u,v))
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|\dd u\dd v.
+\]
+面积元取绝对值，不保留方向。变换须在积分区域上适当一一覆盖；若多重覆盖需计重数或切区。}
+\ruleitem{极坐标}{$x=r\cos\theta,y=r\sin\theta$，$\dd x\dd y=r\dd r\dd\theta$。圆盘 $0\le r\le R,0\le\theta<2\pi$；环形扇区与含 $x^2+y^2$ 的被积函数优先考虑。}
+\ruleitem{柱坐标}{$x=r\cos\theta,y=r\sin\theta,z=z$，$\dd V=r\dd r\dd\theta\dd z$。}
+\ruleitem{球坐标}{约定 $\phi$ 为自正 $z$ 轴量起的极角，$0\le\phi\le\pi$，$\theta$ 为方位角：
+\[
+x=\rho\sin\phi\cos\theta,\ y=\rho\sin\phi\sin\theta,\ z=\rho\cos\phi,\quad
+\dd V=\rho^2\sin\phi\dd\rho\dd\phi\dd\theta.
+\]
+球 $0\le\rho\le R$；上半球 $0\le\phi\le\pi/2$；圆锥 $z\ge\sqrt{x^2+y^2}$ 对应 $0\le\phi\le\pi/4$。}
+\ruleitem{平移椭球为球}{若 $u=x-a,v=y-b,w=c(z-d)$，则 $\dd x\dd y\dd z=|c|^{-1}\dd u\dd v\dd w$。先移到球心，再缩放；线性换元总是要乘 Jacobian。}
+\ruleitem{对称积分}{关于 $x$ 轴、$y$ 轴或原点对称的区域，奇被积函数积分为 0。球 $B_R$：$\iiint x^2\dd V=\iiint y^2\dd V=\iiint z^2\dd V=\frac13\iiint r^2\dd V=4\pi R^5/15$；球面 $S_R$：$\iint_{S_R}x^2\dd S=4\pi R^4/3$，圆盘半径 $R$：$\iint x^2\dd A=\pi R^4/4$。}
+\ruleitem{应用}{薄片质量 $\iint_D\rho\dd A$，体质量 $\iiint_\Omega\rho\dd V$；质心坐标=对应一阶矩/质量；转动惯量 $\iiint r_\perp^2\rho\dd V$。上下曲面 $z=u(x,y),v(x,y)$ 的体积为 $\iint_D|v-u|\dd A$。}
+
+\section{区域识别与累次积分真题}
+\problem{62}{曲线两侧符号面积}{2011 年第 3 届，非数学类，一(3)，\src{03}}
+在 $D=[0,2]^2$ 上求 $\iint_D\sgn(xy-1)\dd x\dd y$。
+\sol 负值区域 $xy<1$ 的面积分层为
+\[A=\int_0^{1/2}2\dd x+\int_{1/2}^2\frac1x\dd x=1+2\ln2.\]
+全域面积 4，所求为正面积减负面积 $4-2A=\ans{2-4\ln2}$。曲线 $y=1/x$ 要与上边界 $y=2$ 分段。
+\problem{63}{两抛物面与切平面围成体积}{2015 年第 7 届，非数学类，一(3)，\src{07}}
+求曲面 $z=x^2+y^2+1$ 在 $(1,-1,3)$ 处切平面与 $z=x^2+y^2$ 所围区域的体积。
+\sol 梯度 $(2x,2y)$ 给切平面 $z=2x-2y-1$。两面高度差为
+\[1-(x-1)^2-(y+1)^2.\]
+投影是以 $(1,-1)$ 为圆心的单位圆。平移极坐标得
+\[V=2\pi\int_0^1(1-r^2)r\dd r=\ans{\pi/2}.\]
+先确定上下面和投影圆盘，再积分；体积不能对带符号高度差取绝对值而不检查区域。
+\problem{64}{平移椭球后二次矩积分}{2016 年第 8 届，非数学类，三，\src{08}}
+$\Omega:x^2+y^2+2z^2\le x+y+2z$，求 $\iiint_\Omega(x^2+y^2+z^2)\dd V$。
+\sol 配方后中心为 $(1/2,1/2,1/2)$。令 $u=x-1/2,v=y-1/2,w=\sqrt2(z-1/2)$，变为单位球，$dV=du\,dv\,dw/\sqrt2$。中心对称消去一次项，故
+\[
+I=\frac1{\sqrt2}\iiint_{B_1}(u^2+v^2+w^2/2+3/4)\dd V
+=\frac1{\sqrt2}\left(\frac52\frac{4\pi}{15}+\pi\right)
+=\ans{\frac{5\sqrt2\pi}{6}}.
+\]
+配方平移不改变体积元；非均匀缩放才产生 $1/\sqrt2$。
+\problem{65}{球坐标与圆锥区域}{2015 年第 7 届，非数学类，一(6)，\src{07}}
+曲面 $z^2=x^2+y^2$ 与 $z=\sqrt{4-x^2-y^2}$ 围成区域 $V$，求 $\iiint_V z\dd V$。
+\sol 上半球半径 2 与上锥面交于 $\phi=\pi/4$。在锥面上方、球面下方，
+$0\le\rho\le2$、$0\le\phi\le\pi/4$、$0\le\theta<2\pi$。因此
+\[
+I=2\pi\int_0^2\rho^3\dd\rho\int_0^{\pi/4}\cos\phi\sin\phi\dd\phi
+=\ans{2\pi}.
+\]
+球坐标的 $\phi$ 是从正 $z$ 轴量起；若改用从水平面量的仰角，上下限和 Jacobian 都要相应改变。
+\problem{66}{交换积分次序揭示简洁区域}{2023 年第 15 届，非数学 B 类，一(5)，\src{15B}}
+求 $\displaystyle I=\int_0^1\dd x\int_x^{\sqrt x}\frac{\cos y}{y}\dd y$。
+\sol 区域约束等价于 $0\le y\le1$、$y^2\le x\le y$，所以
+\[
+I=\int_0^1(y-y^2)\frac{\cos y}y\dd y
+=\int_0^1(1-y)\cos y\dd y
+=\ans{1-\cos1}.
+\]
+原式虽然内层有 $1/y$，组合后的区域宽度 $y-y^2$ 抵消了端点奇异。
+\problem{67}{圆盘上的小尺度极限}{2024 年第 16 届，非数学 A 类二／B 类五，共题，\src{16A}\src{16B}}
+半径 $r$ 圆盘 $D_r$ 上求 $\lim_{r\to0^+}r^{-4}\iint_{D_r}(\ee^{x^2+y^2}-1)\dd A$。
+\sol 极坐标直接积分：
+\[
+\iint_{D_r}(\ee^{x^2+y^2}-1)\dd A
+=2\pi\int_0^r(\ee^{\rho^2}-1)\rho\dd\rho
+=\pi(\ee^{r^2}-1-r^2)
+=\frac\pi2r^4+o(r^4).
+\]
+故答案 $\ans{\pi/2}$。亦可先用 $\ee^u-1\sim u$，再用 $\iint_{D_r}(x^2+y^2)\dd A=\pi r^4/2$；尺度阶数不可漏掉面积元里的 $\rho$。

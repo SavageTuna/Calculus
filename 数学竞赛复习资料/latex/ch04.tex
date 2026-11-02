@@ -1,0 +1,143 @@
+\chapter{一元积分、反常积分与应用}
+\section{积分定理与必备原函数}
+\ruleitem{黎曼积分}{有界函数的积分通过分割、取样、积分和的极限定义。连续函数、只有有限个间断点的有界函数均可积；单调有界函数可积。可积不必连续。若 $f\le g$ 则 $\int f\le\int g$；$|\int f|\le\int|f|$。}
+\ruleitem{积分中值定理}{若 $f$ 连续、$g$ 可积且不变号，存在 $\xi\in[a,b]$ 使 $\int_a^b fg=f(\xi)\int_a^b g$。特别地 $\int_a^b f=f(\xi)(b-a)$。一般只保证闭区间内的点。}
+\ruleitem{微积分基本定理}{若 $f$ 连续，$F(x)=\int_a^x f(t)\dd t$，则 $F'=f$。若 $\Phi'=f$，则 $\int_a^b f=\Phi(b)-\Phi(a)$。变上、下限：$\frac{\dd}{\dd x}\int_{u(x)}^{v(x)}f(t)\dd t=f(v)v'-f(u)u'$。}
+\ruleitem{换元与分部}{
+\[
+\int f(\varphi(t))\varphi'(t)\dd t=\int f(x)\dd x,\qquad
+\int u\dd v=uv-\int v\dd u.
+\]
+定积分换元必须同时换上下限；分部积分优先让对数、反三角、多项式求导降阶。}
+以下积分常数均为 $C$；在各自定义域的连通区间内使用。参数 $a>0$：
+\begin{align*}
+\int x^p\dd x&=\frac{x^{p+1}}{p+1}+C\quad(p\ne-1),&\int\frac{\dd x}x&=\ln|x|+C,\\
+\int\ee^{ax}\dd x&=\frac{\ee^{ax}}a+C,&\int\ln x\dd x&=x\ln x-x+C,\\
+\int\sin x\dd x&=-\cos x+C,&\int\cos x\dd x&=\sin x+C,\\
+\int\tan x\dd x&=-\ln|\cos x|+C,&\int\cot x\dd x&=\ln|\sin x|+C,\\
+\int\sec^2x\dd x&=\tan x+C,&\int\csc^2x\dd x&=-\cot x+C,\\
+\int\sec x\dd x&=\ln|\sec x+\tan x|+C,&\int\csc x\dd x&=\ln|\csc x-\cot x|+C,\\
+\int\frac{\dd x}{a^2+x^2}&=\frac1a\arctan\frac xa+C,&
+\int\frac{\dd x}{\sqrt{a^2-x^2}}&=\arcsin\frac xa+C,\\
+\int\frac{\dd x}{x^2-a^2}&=\frac1{2a}\ln\left|\frac{x-a}{x+a}\right|+C,\\
+\int\frac{\dd x}{\sqrt{x^2+a^2}}&=\ln(x+\sqrt{x^2+a^2})+C,\\
+\int\frac{\dd x}{\sqrt{x^2-a^2}}&=\ln|x+\sqrt{x^2-a^2}|+C,\\
+\int\ee^{ax}\cos bx\dd x&=\frac{\ee^{ax}(a\cos bx+b\sin bx)}{a^2+b^2}+C,\\
+\int\ee^{ax}\sin bx\dd x&=\frac{\ee^{ax}(a\sin bx-b\cos bx)}{a^2+b^2}+C.
+\end{align*}
+最后两式要求 $a^2+b^2\ne0$。常见根式换元：$\sqrt{a^2-x^2}$ 用 $x=a\sin t$；$\sqrt{a^2+x^2}$ 用 $x=a\tan t$ 或 $a\sinh t$；$\sqrt{x^2-a^2}$ 可用 $x=a\sec t$。选择区间使根号及雅可比符号明确。三角有理式可用 $t=\tan(x/2)$：
+\[\sin x=\frac{2t}{1+t^2},\quad\cos x=\frac{1-t^2}{1+t^2},\quad\dd x=\frac{2\dd t}{1+t^2}.\]
+有理函数先多项式除法，再按实一次因子与不可约二次因子分式分解。
+
+\section{对称性、周期与反常收敛}
+\ruleitem{区间反射}{对可积 $f$，$\int_a^b f(x)\dd x=\int_a^b f(a+b-x)\dd x$。两式相加常把复杂函数消去。若 $g(a+b-x)=g(x)$，则 $\int_a^b xg(x)\dd x=\frac{a+b}2\int_a^b g(x)\dd x$。}
+\ruleitem{周期与递推}{周期为 $T$ 的可积函数，任一完整周期积分相同。令 $I_n=\int_0^{\pi/2}\sin^nx\dd x$，有 $I_n=(n-1)I_{n-2}/n$，$I_0=\pi/2,I_1=1$；余弦幂同值。}
+\ruleitem{反常积分定义}{无穷区间或无界被积函数处取单侧极限。若有多个瑕点，必须分别收敛；不能用两个发散部分相消。$\int_{-\infty}^{\infty}f$ 要求两端分别收敛，主值存在不等于反常积分收敛。}
+\[
+\int_1^\infty x^{-p}\dd x\text{ 收敛}\iff p>1,\qquad
+\int_0^1 x^{-p}\dd x\text{ 收敛}\iff p<1.
+\]
+$\int_0^1|\ln x|^q\dd x$ 对 $q\ge0$ 收敛。比较判别用于最终非负函数；若 $f/g\to c\in(0,\infty)$，则同敛散。$\int|f|<\infty$ 推出 $\int f$ 收敛，反向未必。
+\ruleitem{Dirichlet 与 Abel}{若 $\int_a^A f$ 关于 $A$ 有界，$g$ 单调趋于 0，则 $\int_a^\infty fg$ 收敛；这是积分版 Dirichlet。若 $\int f$ 收敛、$g$ 单调有界，则乘积积分收敛（Abel）。振荡函数乘衰减量时先想它们。}
+\ruleitem{常用特殊积分（提高）}{
+\[
+\int_0^\infty\ee^{-ax^2}\dd x=\frac{\sqrt\pi}{2\sqrt a}\ (a>0),\quad
+\Gamma(s)=\int_0^\infty x^{s-1}\ee^{-x}\dd x\ (s>0),
+\]
+$\Gamma(s+1)=s\Gamma(s)$，$\Gamma(1)=1$，$\Gamma(1/2)=\sqrt\pi$；
+$B(p,q)=\int_0^1 t^{p-1}(1-t)^{q-1}\dd t=\Gamma(p)\Gamma(q)/\Gamma(p+q)$，$p,q>0$。可识别结构，但证明题不得只报特殊函数名称代替推导。}
+
+\section{几何与物理应用公式}
+平面面积 $A=\int_a^b|f-g|\dd x$；极坐标扇形面积 $A=\frac12\int_\alpha^\beta r^2\dd\theta$，要求区域被恰当描绘一次。旋转体圆盘/垫片法 $V=\pi\int(R^2-r^2)\dd x$；柱壳法 $V=2\pi\int(\text{半径})(\text{高度})\dd x$，须避免重复计体积。
+\[
+L=\int\sqrt{(x')^2+(y')^2}\dd t,\quad
+L_{\rm polar}=\int\sqrt{r^2+(r')^2}\dd\theta,\quad
+S_{\rm rev}=2\pi\int(\text{到旋转轴的距离})\dd s.
+\]
+质量 $m=\int\rho\dd s$（线密度），质心为坐标的一阶矩除以质量；转动惯量 $I=\int r_\perp^2\dd m$；变力作功 $W=\int F(x)\dd x$。先写微元，再选积分上下限，比背特例可靠。
+
+\section{积分方程、分部与对称真题}
+\problem{30}{把定积分当成一个常数}{2009 年第 1 届，非数学类，一(2)，\src{01}}
+连续函数满足 $f(x)=3x^2-2-\int_0^2f(t)\dd t$，求 $f$。
+\sol 设 $A=\int_0^2f$，则 $f=3x^2-2-A$。再积分得 $A=8-4-2A$，故 $A=4/3$，$\ans{f(x)=3x^2-10/3}$。此处积分变量 $t$ 是哑变量，整个积分不依赖外部 $x$。
+
+\problem{31}{一个极限常数与一个积分常数}{2025 年第 17 届，非数学 A 类，二，\src{17A}}
+连续函数在 0 可导，满足 $f(x)=x^3+x^2\lim_{t\to0}f(t)/t-x\int_0^1f(t)\dd t$，求 $f$。
+\sol 记极限为 $a$、积分为 $b$，则 $f=x^3+ax^2-bx$，这也给出 $f(0)=0$。除以 $x$ 取极限得 $a=-b$。再积分：$b=1/4+a/3-b/2$，解得 $b=3/22,a=-3/22$，故
+\[\ans{f(x)=x^3-\frac3{22}x^2-\frac3{22}x}.\]
+将结果代回两个常数的定义即可复核，而不是仅满足其中一条。
+
+\problem{32}{指数衰减与阶乘递推}{2010 年第 2 届，非数学类，一(3)，\src{02}}
+$s>0$、整数 $n\ge1$，求 $I_n=\int_0^\infty\ee^{-sx}x^n\dd x$。
+\sol 指数衰减保证收敛，且 $x^n\ee^{-sx}\to0$。先在 $[0,A]$ 分部再令 $A\to\infty$，得 $I_n=(n/s)I_{n-1}$，$I_0=1/s$。所以 $\ans{I_n=n!/s^{n+1}}$。无穷远边界项不能不检查就丢掉。
+
+\problem{33}{绝对值周期乘指数}{2012 年第 4 届，非数学类，二，\src{04}}
+求 $I=\int_0^\infty\ee^{-2x}|\sin x|\dd x$。
+\sol 按长度 $\pi$ 分段，令 $x=k\pi+t$，每段是第一段的 $\ee^{-2k\pi}$ 倍，且非负可逐段相加。
+\[
+\int_0^\pi\ee^{-2t}\sin t\dd t=\frac{1+\ee^{-2\pi}}5,\qquad
+I=\ans{\frac{1+\ee^{-2\pi}}{5(1-\ee^{-2\pi})}}.
+\]
+先消绝对值，再利用周期；$\ee^{-2x}|\sin x|$ 本身不是周期函数。
+
+\problem{34}{两次反射消去反三角函数与因子 x}{2013 年第 5 届，非数学类，二，\src{05}}
+求 $I=\int_{-\pi}^{\pi}\frac{x\sin x\arctan(\ee^x)}{1+\cos^2x}\dd x$。
+\sol $w(x)=x\sin x/(1+\cos^2x)$ 为偶函数，且 $\arctan(\ee^x)+\arctan(\ee^{-x})=\pi/2$。配对 $x,-x$ 得
+\[I=\frac\pi2\int_0^\pi\frac{x\sin x}{1+\cos^2x}\dd x.\]
+再用 $x\mapsto\pi-x$，$\sin x/(1+\cos^2x)$ 关于 $\pi/2$ 对称，所以
+\[I=\frac{\pi^2}4\int_0^\pi\frac{\sin x}{1+\cos^2x}\dd x
+=\frac{\pi^2}4[-\arctan(\cos x)]_0^\pi=\ans{\pi^3/8}.\]
+第一步利用偶权配对，第二步利用区间中点对称，两种对称不要混用。
+
+\problem{35}{正弦积分为什么不是绝对收敛}{2013 年第 5 届，非数学类，一(2)，\src{05}}
+判断 $\int_0^\infty\sin x/x\dd x$ 是否绝对收敛。
+\sol 0 处连续延拓后无瑕点。无穷远按 Dirichlet 收敛。对 $k\ge1$，
+\[\int_{k\pi}^{(k+1)\pi}\frac{|\sin x|}x\dd x
+\ge\frac1{(k+1)\pi}\int_{k\pi}^{(k+1)\pi}|\sin x|\dd x
+=\frac2{(k+1)\pi}.\]
+对 $k$ 求和发散，所以为\textbf{条件收敛}。不能因 $|\sin x|\le1$、$\int1/x$ 发散，就直接推出原绝对值积分发散；上界发散没有判定力。
+
+\problem{36}{反双曲函数形式的分部积分}{2018 年第 10 届，非数学类，一(3)，\src{10}}
+求 $\int\frac{\ln(x+\sqrt{1+x^2})}{(1+x^2)^{3/2}}\dd x$。
+\sol 取 $u=\arsinh x$，$\dd v=\dd x/(1+x^2)^{3/2}$，则 $v=x/\sqrt{1+x^2}$、$\dd u=\dd x/\sqrt{1+x^2}$。故结果为
+\[\ans{\frac{x\ln(x+\sqrt{1+x^2})}{\sqrt{1+x^2}}-\frac12\ln(1+x^2)+C}.\]
+识别 $(x/\sqrt{1+x^2})'=(1+x^2)^{-3/2}$ 是关键。
+
+\problem{37}{对数定积分的降阶}{2024 年第 16 届，非数学 A 类，一(1)，\src{16A}}
+求 $\int_0^1\ln(1+x^2)\dd x$。
+\sol 分部得 $[x\ln(1+x^2)]_0^1-\int_0^1 2x^2/(1+x^2)\dd x$，将后者写成 $2-2/(1+x^2)$，答案为 $\ans{\ln2-2+\pi/2}$。
+
+\problem{38}{奇函数与半圆面积}{2024 年第 16 届，非数学 B 类，一(2)，\src{16B}}
+求 $\int_{-2}^2[x^3\cos^5x+\sqrt{4-x^2}]\dd x$。
+\sol 第一项为奇函数，在对称区间积分为 0；第二项为半径 2 的上半圆面积。故结果 $\ans{2\pi}$。无需做三角换元。
+
+\problem{39}{函数关系给出偶部}{2025 年第 17 届，非数学 B 类，一(3)，\src{17B}}
+连续函数满足 $f(x)+f(-x)=2$，求 $\int_{-1}^1[f(x)+x^2\ln(x+\sqrt{1+x^2})]\dd x$。
+\sol $\arsinh x$ 为奇函数，因此第二项积分为 0。第一项配对后为 $\int_0^1[f(x)+f(-x)]\dd x=2$，答案 $\ans2$。不需要求出 $f$ 的具体形式。
+
+\problem{40}{反常积分先截断再分部}{2025 年第 17 届，非数学 B 类，一(5)，\src{17B}}
+求 $\int_1^\infty\frac{\ln x}{(1+x)^2}\dd x$。
+\sol 边界项 $-\ln x/(1+x)$ 在无穷远趋于 0，在 1 为 0，故
+\[I=\int_1^\infty\frac{\dd x}{x(1+x)}
+=\left[\ln\frac{x}{1+x}\right]_1^\infty=\ans{\ln2}.\]
+分部后两项 $1/x-1/(1+x)$ 必须作为一个整体积分，不能拆成两个发散积分相减。
+
+\problem{41}{由 Dirichlet 积分推导 sinc 的平方、立方}{2024 年第 16 届，非数学 B 类，五，\src{16B}}
+已知 $\int_0^\infty\sin x/x\dd x=\pi/2$，求 $I_2=\int_0^\infty(\sin x/x)^2\dd x$ 与 $I_3=\int_0^\infty(\sin x/x)^3\dd x$。
+\sol 先在截断区间分部并检查两端边界，得
+\[I_2=\int_0^\infty\frac{\sin2x}{x}\dd x=\ans{\pi/2}.\]
+再分部两次：
+\begin{align*}
+I_3&=\frac32\int_0^\infty\frac{\sin^2x\cos x}{x^2}\dd x\\
+&=\frac38\int_0^\infty\frac{\cos x-\cos3x}{x^2}\dd x\\
+&=\frac38\int_0^\infty\frac{-\sin x+3\sin3x}{x}\dd x
+=\ans{3\pi/8}.
+\end{align*}
+第一步边界含 $\sin^3x/x^2$，第二步含 $(\cos x-\cos3x)/x$，两端均为 0。最后用换元 $u=3x$；组合式在拆分前应先保证每个所得正弦积分收敛。
+
+\problem{42}{旋转体积最小：先消参数，再求二次函数最值}{2023 年第 15 届，非数学 B 类，二，\src{15B}}
+$y=3ax^2+2bx+\ln c$（$c>0$）过原点，在 $[0,1]$ 非负；与横轴及 $x=1$ 围成面积为 1。求绕横轴旋转的最小体积。
+\sol 过原点得 $c=1$；面积条件给出 $a+b=1$。于是
+\[V=\pi\int_0^1[3ax^2+2(1-a)x]^2\dd x
+=\pi\left(\frac{2a^2}{15}+\frac a3+\frac43\right).\]
+抛物线最小值在 $a=-5/4$，$b=9/4$，值为 $\ans{9\pi/8}$。此时 $y=(-15x^2+18x)/4\ge0$ 于 $[0,1]$，候选确实满足原约束；若不检验非负性，代数最优未必可行。
